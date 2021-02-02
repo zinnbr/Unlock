@@ -1,0 +1,30 @@
+-- antiretard lua made by zinn#0001
+local enableBox = ui.new_checkbox("config", "Presets", "Unlock all")
+local save_ref = ui.reference("config", "Presets", "Save")
+local load_ref = ui.reference("config", "Presets", "Load")
+local delete_ref = ui.reference("config", "Presets", "Delete")
+local reset_ref = ui.reference("config", "Presets", "Reset")
+local import_ref = ui.reference("config", "Presets", "Import from clipboard")
+local export_ref = ui.reference("config", "Presets", "Export to clipboard")
+ui.set(enableBox, false)
+
+local function menu_call()
+	ui.set_visible(save_ref, ui.get(enableBox))
+	ui.set_visible(delete_ref, ui.get(enableBox))
+	ui.set_visible(reset_ref, ui.get(enableBox))
+	ui.set_visible(import_ref, ui.get(enableBox))
+	ui.set_visible(export_ref, ui.get(enableBox))
+end
+menu_call()
+ui.set_callback(enableBox, menu_call)
+
+local function setmefree()
+	ui.set_visible(save_ref, false)
+	ui.set_visible(delete_ref, false)
+	ui.set_visible(reset_ref, false)
+	ui.set_visible(import_ref, false)
+	ui.set_visible(export_ref, false)
+	ui.set(enableBox, false)
+end
+ui.set_callback(load_ref, setmefree)
+ui.set_callback(save_ref, setmefree)
